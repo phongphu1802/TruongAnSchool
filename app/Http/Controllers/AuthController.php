@@ -32,9 +32,10 @@ class AuthController extends AbstractRestAPIController
      */
     public function login(LoginRequest $request)
     {
-        $credentials = ['email' => $request->username, "password" => $request->password];
+        $credentials = ['name' => $request->username, "password" => bcrypt($request->password)];
+
         $token = auth()->attempt($credentials, true);
-        dd($token);
+
         if (!$token)
             return $this->sendUnAuthorizedJsonResponse();
 
