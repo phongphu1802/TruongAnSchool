@@ -13,6 +13,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\RoleService;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends AbstractRestAPIController
 {
@@ -32,9 +33,8 @@ class AuthController extends AbstractRestAPIController
      */
     public function login(LoginRequest $request)
     {
-        $credentials = ['email' => $request->username, "password" => $request->password];
+        $credentials = ['username' => $request->username, "password" => $request->password];
         $token = auth()->attempt($credentials, true);
-        dd($token);
         if (!$token)
             return $this->sendUnAuthorizedJsonResponse();
 
@@ -64,7 +64,7 @@ class AuthController extends AbstractRestAPIController
             'role_uuid' => $this->roleService->findOneWhere(['name' => RoleEnum::USER->value])->getKey(),
         ]);
 
-        $credentials = ['email' => $request->email, "password" => $request->password];
+        $credentials = ['username' => $request->username, "password" => $request->password];
 
         $token = auth()->attempt($credentials, true);
 
@@ -88,7 +88,7 @@ class AuthController extends AbstractRestAPIController
      */
     public function logout(LogoutRequest $request)
     {
-        auth()->logout();
+        auth()->logout(true);
 
         return $this->sendOkJsonResponse(['message' => __('auth.logout')]);
     }

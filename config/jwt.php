@@ -103,6 +103,8 @@ return [
 
     'ttl' => env('JWT_TTL', 60),
 
+    'jwt_type' => env('JWT_TYPE', 'bearer'),
+
     /*
     |--------------------------------------------------------------------------
     | Refresh time to live
