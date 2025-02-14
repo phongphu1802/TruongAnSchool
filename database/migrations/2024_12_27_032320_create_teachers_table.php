@@ -14,6 +14,8 @@ return new class extends Migration {
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->unsignedBigInteger('uuid')->autoIncrement();
+            $table->string('birthday');
+            $table->string('proper');
             $table->string('name');
             $table->timestamps();
         });
