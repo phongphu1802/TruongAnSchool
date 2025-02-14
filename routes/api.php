@@ -3,6 +3,7 @@
 use App\Enums\RoleEnum;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,17 @@ Route::group(['middleware' => 'auth:api'], function () {
         });
         Route::get('teacher/{id}', [TeacherController::class, 'show']);
         Route::get('teachers', [TeacherController::class, 'index']);
+    });
+
+    //Room
+    Route::group(['as' => 'room.'], function () {
+        Route::group(['middleware' => 'role:' . RoleEnum::ADMIN->value], function () {
+            Route::post('room', [RoomController::class, 'store']);
+            Route::put('room/{id}', [RoomController::class, 'edit']);
+            Route::delete('room/{id}', [RoomController::class, 'destroy']);
+        });
+        Route::get('room/{id}', [RoomController::class, 'show']);
+        Route::get('rooms', [RoomController::class, 'index']);
     });
 
     //User
