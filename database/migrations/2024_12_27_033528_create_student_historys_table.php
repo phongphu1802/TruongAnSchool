@@ -15,7 +15,8 @@ return new class extends Migration {
     {
         Schema::create('student_historys', function (Blueprint $table) {
             $table->unsignedBigInteger('uuid')->autoIncrement();
-            $table->string('name');
+            $table->string('start_date');
+            $table->string('end_date');
             $table->unsignedBigInteger('student_uuid');
             $table->foreign('student_uuid')->references('uuid')->on('students');
             $table->enum('status', [StudentEnum::UNPAID->value, StudentEnum::PAID->value]);
