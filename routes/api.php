@@ -7,6 +7,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentHistoryController;
 use Illuminate\Support\Facades\Route;
 
 //authenticate
@@ -38,6 +39,15 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::delete('student/{id}', [StudentController::class, 'destroy']);
         Route::get('student/{id}', [StudentController::class, 'show']);
         Route::get('students', [StudentController::class, 'index']);
+    });
+
+    //Student_history
+    Route::group(['as' => 'student_history.'], function () {
+        Route::post('student_history', [StudentHistoryController::class, 'store']);
+        Route::put('student_history/{id}', [StudentHistoryController::class, 'edit']);
+        Route::delete('student_history/{id}', [StudentHistoryController::class, 'destroy']);
+        Route::get('student_history/{id}', [StudentHistoryController::class, 'show']);
+        Route::get('student_histories', [StudentHistoryController::class, 'index']);
     });
 
     //Teacher

@@ -23,4 +23,9 @@ class StudentHistory extends Model
         'end_date',
         'status',
     ];
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'uuid', 'student_uuid');
+    }
 }
