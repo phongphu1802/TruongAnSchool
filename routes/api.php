@@ -6,6 +6,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 //authenticate
@@ -28,6 +29,15 @@ Route::group(['middleware' => 'auth:api'], function () {
         });
         Route::get('role/{id}', [RoleController::class, 'show']);
         Route::get('roles', [RoleController::class, 'index']);
+    });
+
+    //Student
+    Route::group(['as' => 'student.'], function () {
+        Route::post('student', [StudentController::class, 'store']);
+        Route::put('student/{id}', [StudentController::class, 'edit']);
+        Route::delete('student/{id}', [StudentController::class, 'destroy']);
+        Route::get('student/{id}', [StudentController::class, 'show']);
+        Route::get('students', [StudentController::class, 'index']);
     });
 
     //Teacher

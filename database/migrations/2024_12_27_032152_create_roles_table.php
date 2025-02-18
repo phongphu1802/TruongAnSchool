@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::create('roles', function (Blueprint $table) {
             $table->unsignedBigInteger('uuid')->autoIncrement();
             $table->string('name');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
