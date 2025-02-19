@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('teacher_uuid');
             $table->foreign('teacher_uuid')->references('uuid')->on('teachers');
             $table->string('name');
+            $table->string('start_time');
+            $table->string('end_time');
             $table->softDeletes();
             $table->timestamps();
         });

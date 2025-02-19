@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\HasApiTokens;
 
-class Room extends Model
+class ClassModel extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
@@ -21,4 +21,14 @@ class Room extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function room()
+    {
+        return $this->hasOne(Room::class, 'uuid', 'room_uuid');
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'uuid', 'teacher_uuid');
+    }
 }
