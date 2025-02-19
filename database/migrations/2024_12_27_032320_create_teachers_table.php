@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('birthday');
             $table->string('proper');
             $table->string('name');
-            $table->enum('status', [SexEnum::WOMEN->value, SexEnum::MEN->value, SexEnum::OTHER->value]);
+            $table->enum('sex', [SexEnum::WOMEN->value, SexEnum::MEN->value, SexEnum::OTHER->value]);
             $table->softDeletes();
             $table->timestamps();
         });
