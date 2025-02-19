@@ -16,7 +16,21 @@ class RoomSeeder extends Seeder
     {
         $Rooms = [
             ['name' => 'Room A'],
-            ['name' => 'Room B']
+            ['name' => 'Room B'],
+            ['name' => 'Room C'],
+            ['name' => 'Room D'],
+            ['name' => 'Room E'],
+            ['name' => 'Room F'],
+            ['name' => 'Room G'],
+            ['name' => 'Room H'],
+            ['name' => 'Room I'],
+            ['name' => 'Room K'],
+            ['name' => 'Room L'],
+            ['name' => 'Room M'],
+            ['name' => 'Room N'],
+            ['name' => 'Room O'],
+            ['name' => 'Room P'],
+            ['name' => 'Room Q']
         ];
 
         foreach ($Rooms as $Room) {
