@@ -18,7 +18,8 @@ class StudentResource extends JsonResource
         $data = [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'class_uuid' => $this->class_uuid,
+            'course_uuid' => $this->class_uuid,
+            'sex' => $this->sex,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
@@ -30,8 +31,8 @@ class StudentResource extends JsonResource
             $data['student_history'] = $this->student_historys;
         }
 
-        if (in_array('student__class_uuid', $expand)) {
-            $data['class'] = $this->class;
+        if (in_array('student__course_uuid', $expand)) {
+            $data['course'] = $this->course;
         }
 
         return $data;

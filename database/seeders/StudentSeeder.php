@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\SexEnum;
 use Illuminate\Database\Seeder;
 use App\Models\Student;
 use App\Enums\StudentEnum;
@@ -16,55 +17,71 @@ class StudentSeeder extends Seeder
     public function run()
     {
         $students = [
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 2, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van C', 'class_uuid' => 3, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van D', 'class_uuid' => 4, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van E', 'class_uuid' => 5, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van F', 'class_uuid' => 6, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van K', 'class_uuid' => 7, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van G', 'class_uuid' => 8, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van M', 'class_uuid' => 9, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van N', 'class_uuid' => 10, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van H', 'class_uuid' => 11, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van N', 'class_uuid' => 12, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van O', 'class_uuid' => 13, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van P', 'class_uuid' => 14, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 15, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 2, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 3, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 4, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 5, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 6, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 7, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 8, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 9, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 10, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 11, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 12, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van B', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
-            ['name' => 'Nguyen Van A', 'class_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 2, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 3, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 4, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 5, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 6, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 7, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 8, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 9, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 10, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 11, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 12, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 13, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 14, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 15, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 2, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 3, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 4, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 5, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 6, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 7, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 8, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 9, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 10, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 11, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 12, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
+            ['name' => $this->randomName(), 'course_uuid' => 1, 'status' => StudentEnum::CONTINUE ->value, 'sex' => $this->randomSex()],
 
         ];
 
         foreach ($students as $student) {
             Student::updateOrCreate(['name' => $student['name']], $student);
         }
+    }
+
+    public function randomName()
+    {
+        $name = ['Huy', 'Phú', 'Phong', 'Nam', 'An', 'Minh', 'Nhân', 'Phước', 'Mai', 'My', 'Hồng', 'Hân', 'Quý', 'Thọ', 'Tuấn', 'Đăng', 'Trinh', 'Nhi', 'Thảo'];
+
+        $Surname = ['Nguyễn', 'Trần', 'Lê', 'Phạm', 'Hoàng', 'Vũ', 'Phan', 'Trương', 'Bùi', 'Đặng', 'Đỗ', 'Ngô', 'Hồ', 'Dương', 'Đinh', 'Trịnh'];
+
+        return $Surname[array_rand($Surname)] . ' ' . $name[array_rand($name)];
+    }
+
+    public function randomSex()
+    {
+        $sex = [SexEnum::WOMEN->value, SexEnum::OTHER->value, SexEnum::MEN->value];
+
+        return $sex[array_rand($sex)];
     }
 }

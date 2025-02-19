@@ -20,6 +20,7 @@ class TeacherResource extends JsonResource
             'name' => $this->name,
             'birthday' => $this->birthday,
             'proper' => $this->proper,
+            'sex' => $this->sex,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,

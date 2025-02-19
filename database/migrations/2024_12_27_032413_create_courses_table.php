@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('class', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->unsignedBigInteger('uuid')->autoIncrement();
             $table->unsignedBigInteger('room_uuid');
             $table->foreign('room_uuid')->references('uuid')->on('rooms');
@@ -33,6 +33,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('class');
+        Schema::dropIfExists('courses');
     }
 };

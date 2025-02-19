@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Enums\SexEnum;
 
 class TeacherUpdateRequest extends FormRequest
 {
@@ -24,6 +26,7 @@ class TeacherUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'sex' => [Rule::in(SexEnum::WOMEN->value, SexEnum::MEN->value, SexEnum::OTHER->value)]
         ];
     }
 }

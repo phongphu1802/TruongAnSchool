@@ -4,19 +4,19 @@ namespace App\Models\QueryBuilders;
 
 use App\Abstracts\AbstractQueryBuilder;
 use App\Models\SearchQueryBuilders\SearchQueryBuilder;
-use App\Models\ClassModel;
+use App\Models\Course;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\Concerns\SortsQuery;
 use Spatie\QueryBuilder\QueryBuilder;
 
-class ClassQueryBuilder extends AbstractQueryBuilder
+class CourseQueryBuilder extends AbstractQueryBuilder
 {
     /**
      * @return string
      */
     public static function baseQuery()
     {
-        return ClassModel::class;
+        return Course::class;
     }
 
     /**
@@ -24,7 +24,7 @@ class ClassQueryBuilder extends AbstractQueryBuilder
      */
     public static function initialQuery()
     {
-        $modelKeyName = (new ClassModel())->getKeyName();
+        $modelKeyName = (new Course())->getKeyName();
 
         return static::for(static::baseQuery())
             ->allowedFields([
@@ -78,7 +78,7 @@ class ClassQueryBuilder extends AbstractQueryBuilder
      */
     public static function fillAble()
     {
-        return ClassModel::class;
+        return Course::class;
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use App\Enums\StudentEnum;
+use App\Enums\SexEnum;
 
 class StudentUpdateRequest extends FormRequest
 {
@@ -26,8 +27,9 @@ class StudentUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'class_uuid' => [Rule::exists('class', 'uuid')],
-            'status' => [Rule::in(StudentEnum::STOP->value, StudentEnum::CONTINUE ->value)]
+            'course_uuid' => [Rule::exists('courses', 'uuid')],
+            'status' => [Rule::in(StudentEnum::STOP->value, StudentEnum::CONTINUE ->value)],
+            'sex' => [Rule::in(SexEnum::WOMEN->value, SexEnum::MEN->value, SexEnum::OTHER->value)]
         ];
     }
 }

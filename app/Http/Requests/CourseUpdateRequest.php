@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ClassCreateRequest extends FormRequest
+class CourseUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,9 @@ class ClassCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_time' => ['required'],
-            'end_time' => ['required'],
-            'name' => ['required', Rule::unique('classs', 'name')],
-            'room_uuid' => ['required', Rule::exists('rooms', 'uuid')],
-            'teacher_uuid' => ['required', Rule::exists('teachers', 'uuid')],
+            'name' => [Rule::unique('classs')->ignore($this->id, 'uuid')],
+            'room_uuid' => [Rule::exists('rooms', 'uuid')],
+            'teacher_uuid' => [Rule::exists('teachers', 'uuid')],
         ];
     }
 }

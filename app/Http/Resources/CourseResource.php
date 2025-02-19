@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Request;
 
-class ClassResource extends JsonResource
+class CourseResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -29,11 +29,11 @@ class ClassResource extends JsonResource
 
         $expand = Request::get('expand', []);
 
-        if (in_array('class__room_uuid', $expand)) {
+        if (in_array('course__room_uuid', $expand)) {
             $data['room'] = $this->room;
         }
 
-        if (in_array('class__teacher_uuid', $expand)) {
+        if (in_array('course__teacher_uuid', $expand)) {
             $data['teacher'] = $this->teacher;
         }
 

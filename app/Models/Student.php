@@ -21,6 +21,7 @@ class Student extends Model
     protected $fillable = [
         'name',
         'status',
+        'sex'
     ];
 
     public function student_historys()
@@ -28,9 +29,8 @@ class Student extends Model
         return $this->hasMany(StudentHistory::class, 'student_uuid', 'uuid');
     }
 
-    public function class()
+    public function course()
     {
-        return '';
-        // return $this->hasOne(Role::class, 'uuid', 'role_uuid');
+        return $this->hasOne(Course::class, 'uuid', 'course_uuid');
     }
 }

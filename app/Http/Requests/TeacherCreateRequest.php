@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Enums\SexEnum;
 
 class TeacherCreateRequest extends FormRequest
 {
@@ -26,6 +27,7 @@ class TeacherCreateRequest extends FormRequest
     {
         return [
             'name' => ['required'],
+            'sex' => ['required', Rule::in(SexEnum::WOMEN->value, SexEnum::MEN->value, SexEnum::OTHER->value)]
         ];
     }
 }
