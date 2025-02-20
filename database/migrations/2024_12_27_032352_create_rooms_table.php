@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->unsignedBigInteger('uuid')->autoIncrement();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('student_historys', function (Blueprint $table) {
+        Schema::create('student_histories', function (Blueprint $table) {
             $table->unsignedBigInteger('uuid')->autoIncrement();
             $table->string('start_date');
             $table->string('end_date');
@@ -32,6 +32,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('student_historys');
+        Schema::dropIfExists('student_histories');
     }
 };

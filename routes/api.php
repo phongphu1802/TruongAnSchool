@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('teachers', [TeacherController::class, 'index']);
     });
 
-    //Class
+    //Course
     Route::group(['as' => 'course.'], function () {
         Route::group(['middleware' => 'role:' . RoleEnum::ADMIN->value], function () {
             Route::post('course', [CourseController::class, 'store']);

@@ -19,6 +19,7 @@ class StudentHistory extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'student_uuid',
         'start_date',
         'end_date',
         'status',

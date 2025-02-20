@@ -18,7 +18,7 @@ class StudentResource extends JsonResource
         $data = [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'course_uuid' => $this->class_uuid,
+            'course_uuid' => $this->course_uuid,
             'sex' => $this->sex,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
@@ -28,11 +28,19 @@ class StudentResource extends JsonResource
         $expand = Request::get('expand', []);
 
         if (in_array('student__student_history', $expand)) {
-            $data['student_history'] = $this->student_historys;
+            $data['student_history'] = $this->student_histories;
         }
 
         if (in_array('student__course_uuid', $expand)) {
             $data['course'] = $this->course;
+        }
+
+        if (in_array('student__course_uuid', $expand) && in_array('student__course_room_uuid', $expand)) {
+            $data['course']['room'] = $this->room;
+        }
+
+        if (in_array('student__course_uuid', $expand) && in_array('student__course_teacher_uuid', $expand)) {
+            $data['course']['teacher'] = $this->teacher;
         }
 
         return $data;

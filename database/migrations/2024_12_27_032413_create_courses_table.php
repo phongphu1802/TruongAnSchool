@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->foreign('room_uuid')->references('uuid')->on('rooms');
             $table->unsignedBigInteger('teacher_uuid');
             $table->foreign('teacher_uuid')->references('uuid')->on('teachers');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('start_time');
             $table->string('end_time');
             $table->softDeletes();

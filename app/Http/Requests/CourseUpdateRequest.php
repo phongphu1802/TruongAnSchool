@@ -25,7 +25,7 @@ class CourseUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [Rule::unique('classs')->ignore($this->id, 'uuid')],
+            'name' => [Rule::unique('courses')->ignore($this->id, 'uuid')],
             'room_uuid' => [Rule::exists('rooms', 'uuid')],
             'teacher_uuid' => [Rule::exists('teachers', 'uuid')],
         ];

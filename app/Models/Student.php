@@ -21,7 +21,8 @@ class Student extends Model
     protected $fillable = [
         'name',
         'status',
-        'sex'
+        'sex',
+        'course_uuid'
     ];
 
     public function student_historys()
@@ -32,5 +33,16 @@ class Student extends Model
     public function course()
     {
         return $this->hasOne(Course::class, 'uuid', 'course_uuid');
+    }
+
+    public function room()
+    {
+
+        return $this->hasOne(Room::class, 'uuid', $this->course()->getLocalKeyName('room_uuid'));
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class, 'uuid', $this->course()->getLocalKeyName('teacher_uuid'));
     }
 }
