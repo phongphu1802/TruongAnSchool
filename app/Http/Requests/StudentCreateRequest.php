@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\StudentEnum;
+use App\Enums\SexEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -27,8 +28,9 @@ class StudentCreateRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'class_uuid' => ['required', Rule::exists('class', 'uuid')],
-            'status' => ['required', Rule::in(StudentEnum::STOP->value, StudentEnum::CONTINUE ->value)]
+            'course_uuid' => ['required', Rule::exists('courses', 'uuid')],
+            'status' => ['required', Rule::in(StudentEnum::STOP->value, StudentEnum::CONTINUE ->value)],
+            'sex' => ['required', Rule::in(SexEnum::WOMEN->value, SexEnum::MEN->value, SexEnum::OTHER->value)]
         ];
     }
 }

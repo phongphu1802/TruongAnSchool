@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\StudentEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ClassUpdateRequest extends FormRequest
+class StudentHistoryCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +26,10 @@ class ClassUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [Rule::unique('classs')->ignore($this->id, 'uuid')],
-            'room_uuid' => [Rule::exists('rooms', 'uuid')],
-            'teacher_uuid' => [Rule::exists('teachers', 'uuid')],
+            'start_date' => 'required|date_format:d-m-Y|before_or_equal:end_date',
+            'end_date' => 'required|date_format:d-m-Y|after_or_equal:start_date',
+            'student_uuid' => ['required', Rule::exists('students', 'uuid')],
+            'status' => ['required', Rule::in(StudentEnum::PAID->value, StudentEnum::UNPAID->value)]
         ];
     }
 }

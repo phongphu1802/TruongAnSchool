@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Sanctum\HasApiTokens;
 
-class ClassModel extends Model
+class Course extends Model
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
@@ -20,6 +20,10 @@ class ClassModel extends Model
      */
     protected $fillable = [
         'name',
+        'room_uuid',
+        'teacher_uuid',
+        'start_time',
+        'end_time'
     ];
 
     public function room()

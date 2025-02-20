@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Enums\SexEnum;
 
-class TeacherUpdateRequest extends FormRequest
+
+class CourseCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,11 @@ class TeacherUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'sex' => [Rule::in(SexEnum::WOMEN->value, SexEnum::MEN->value, SexEnum::OTHER->value)]
+            'name' => ['required', Rule::unique('courses', 'name')],
+            'room_uuid' => ['required', Rule::exists('rooms', 'uuid')],
+            'teacher_uuid' => ['required', Rule::exists('teachers', 'uuid')],
+            'start_time' => ['required'],
+            'end_time' => ['required'],
         ];
     }
 }

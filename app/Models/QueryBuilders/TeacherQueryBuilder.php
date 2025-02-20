@@ -33,6 +33,7 @@ class TeacherQueryBuilder extends AbstractQueryBuilder
                 'name',
                 'birthday',
                 'proper',
+                'sex',
                 'created_at',
                 'updated_at'
             ])
@@ -43,6 +44,7 @@ class TeacherQueryBuilder extends AbstractQueryBuilder
                 'name',
                 'birthday',
                 'proper',
+                'sex',
                 'created_at',
                 'updated_at'
             ])
@@ -57,6 +59,8 @@ class TeacherQueryBuilder extends AbstractQueryBuilder
                 AllowedFilter::exact('exact__birthday', 'birthday'),
                 'proper',
                 AllowedFilter::exact('exact__proper', 'proper'),
+                'sex',
+                AllowedFilter::exact('exact__sex', 'sex'),
                 'created_at',
                 AllowedFilter::exact('exact__created_at', 'created_at'),
                 'updated_at',

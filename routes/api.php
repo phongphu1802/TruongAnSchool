@@ -6,8 +6,9 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClassController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentHistoryController;
 use Illuminate\Support\Facades\Route;
 
 //authenticate
@@ -41,6 +42,15 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('students', [StudentController::class, 'index']);
     });
 
+    //Student_history
+    Route::group(['as' => 'student_history.'], function () {
+        Route::post('student_history', [StudentHistoryController::class, 'store']);
+        Route::put('student_history/{id}', [StudentHistoryController::class, 'edit']);
+        Route::delete('student_history/{id}', [StudentHistoryController::class, 'destroy']);
+        Route::get('student_history/{id}', [StudentHistoryController::class, 'show']);
+        Route::get('student_histories', [StudentHistoryController::class, 'index']);
+    });
+
     //Teacher
     Route::group(['as' => 'teacher.'], function () {
         Route::group(['middleware' => 'role:' . RoleEnum::ADMIN->value], function () {
@@ -52,15 +62,15 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('teachers', [TeacherController::class, 'index']);
     });
 
-    //Class
-    Route::group(['as' => 'class.'], function () {
+    //Course
+    Route::group(['as' => 'course.'], function () {
         Route::group(['middleware' => 'role:' . RoleEnum::ADMIN->value], function () {
-            Route::post('class', [ClassController::class, 'store']);
-            Route::put('class/{id}', [ClassController::class, 'edit']);
-            Route::delete('class/{id}', [ClassController::class, 'destroy']);
+            Route::post('course', [CourseController::class, 'store']);
+            Route::put('course/{id}', [CourseController::class, 'edit']);
+            Route::delete('course/{id}', [CourseController::class, 'destroy']);
         });
-        Route::get('class/{id}', [ClassController::class, 'show']);
-        Route::get('classs', [ClassController::class, 'index']);
+        Route::get('course/{id}', [CourseController::class, 'show']);
+        Route::get('courses', [CourseController::class, 'index']);
     });
 
     //Room
