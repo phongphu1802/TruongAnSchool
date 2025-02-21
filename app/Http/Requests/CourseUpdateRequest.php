@@ -26,8 +26,10 @@ class CourseUpdateRequest extends FormRequest
     {
         return [
             'name' => [Rule::unique('courses')->ignore($this->id, 'uuid')],
-            'room_uuid' => [Rule::exists('rooms', 'uuid')],
             'teacher_uuid' => [Rule::exists('teachers', 'uuid')],
+            'room.*.room_uuid' => [Rule::exists('rooms', 'uuid')],
+            'room.*.start_time' => ['date_format:H:i'],
+            'room.*.end_time' => ['date_format:H:i', 'after:start_time'],
         ];
     }
 }

@@ -27,10 +27,11 @@ class CourseCreateRequest extends FormRequest
     {
         return [
             'name' => ['required', Rule::unique('courses', 'name')],
-            'room_uuid' => ['required', Rule::exists('rooms', 'uuid')],
             'teacher_uuid' => ['required', Rule::exists('teachers', 'uuid')],
-            'start_time' => ['required'],
-            'end_time' => ['required'],
+            'room' => ['required'],
+            'room.*.room_uuid' => ['required', Rule::exists('rooms', 'uuid')],
+            'room.*.start_time' => ['required', 'date_format:H:i'],
+            'room.*.end_time' => ['required', 'date_format:H:i', 'after:start_time'],
         ];
     }
 }

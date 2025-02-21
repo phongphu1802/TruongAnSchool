@@ -18,10 +18,7 @@ class CourseResource extends JsonResource
         $data = [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'room_uuid' => $this->room_uuid,
             'teacher_uuid' => $this->teacher_uuid,
-            'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'deleted_at' => $this->deleted_at,
@@ -29,8 +26,15 @@ class CourseResource extends JsonResource
 
         $expand = Request::get('expand', []);
 
-        if (in_array('course__room_uuid', $expand)) {
-            $data['room'] = $this->room;
+        if (in_array('course__room', $expand)) {
+            $data['room'] = $this->roomCourse;
+        }
+
+        if (in_array('course__room', $expand) && in_array('course__room_room_uuid', $expand)) {
+            foreach ($this->roomCourse as $key => $value) {
+                // dd($this->room($value->uuid, $value->room_uuid));
+                $data['room'][$key]['room'] = $this->room($value->uuid, $value->room_uuid);
+            }
         }
 
         if (in_array('course__teacher_uuid', $expand)) {
