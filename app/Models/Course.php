@@ -20,19 +20,21 @@ class Course extends Model
      */
     protected $fillable = [
         'name',
-        'room_uuid',
         'teacher_uuid',
-        'start_time',
-        'end_time'
     ];
-
-    public function room()
-    {
-        return $this->hasOne(Room::class, 'uuid', 'room_uuid');
-    }
 
     public function teacher()
     {
         return $this->hasOne(Teacher::class, 'uuid', 'teacher_uuid');
+    }
+
+    public function room($room_uuid)
+    {
+        return Room::findOrFail($room_uuid);
+    }
+
+    public function roomCourse()
+    {
+        return $this->hasMany(CourseRoom::class, 'course_uuid', 'uuid');
     }
 }

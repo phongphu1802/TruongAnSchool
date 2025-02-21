@@ -12,11 +12,14 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('course_rooms', function (Blueprint $table) {
             $table->unsignedBigInteger('uuid')->autoIncrement();
-            $table->unsignedBigInteger('teacher_uuid');
-            $table->foreign('teacher_uuid')->references('uuid')->on('teachers');
-            $table->string('name')->unique();
+            $table->unsignedBigInteger('course_uuid');
+            $table->foreign('course_uuid')->references('uuid')->on('courses');
+            $table->unsignedBigInteger('room_uuid');
+            $table->foreign('room_uuid')->references('uuid')->on('rooms');
+            $table->string('start_time');
+            $table->string('end_time');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +32,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('course_rooms');
     }
 };
