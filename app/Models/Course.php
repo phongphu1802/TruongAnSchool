@@ -28,9 +28,9 @@ class Course extends Model
         return $this->hasOne(Teacher::class, 'uuid', 'teacher_uuid');
     }
 
-    public function room($uuid, $room_uuid)
+    public function room($room_uuid)
     {
-        return $this->hasOne(Room::class, 20, 1);
+        return Room::findOrFail($room_uuid);
     }
 
     public function roomCourse()

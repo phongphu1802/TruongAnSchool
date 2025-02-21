@@ -32,8 +32,7 @@ class CourseResource extends JsonResource
 
         if (in_array('course__room', $expand) && in_array('course__room_room_uuid', $expand)) {
             foreach ($this->roomCourse as $key => $value) {
-                // dd($this->room($value->uuid, $value->room_uuid));
-                $data['room'][$key]['room'] = $this->room($value->uuid, $value->room_uuid);
+                $data['room'][$key]['room'] = $this->room($value->room_uuid);
             }
         }
 

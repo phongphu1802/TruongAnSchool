@@ -20,7 +20,7 @@ class CourseController extends AbstractRestAPIController
 {
     protected $courseRoomService;
 
-    use IndexTrait, ShowTrait, DestroyTrait, EditTrait;
+    use IndexTrait, ShowTrait;
     public function __construct(CourseService $service, CourseRoomService $courseRoomService)
     {
         $this->service = $service;
@@ -51,14 +51,14 @@ class CourseController extends AbstractRestAPIController
     {
         $model = $this->service->findOrFailById($request->id);
 
-        $this->service->update($model, ['name' => $request->name, 'teacher_uuid' => $request->teacher_uuid]);
+        $this->service->update($model, array_filter(['name' => $request->name, 'teacher_uuid' => $request->teacher_uuid]));
 
         if (count($request->room) > 0) {
-            $courseRooms = $this->courseRoomService->findAllWhere(['course_uuid', $request->id]);
+            $courseRooms = $this->courseRoomService->findAllWhere(['course_uuid' => $request->id]);
 
             // Delete course room old
             foreach ($courseRooms as $courseRoom) {
-                $this->courseRoomService->destroy($courseRoom->id);
+                $this->courseRoomService->destroy($courseRoom->uuid);
             }
 
             // Create course room new
@@ -73,5 +73,19 @@ class CourseController extends AbstractRestAPIController
         }
 
         return $this->sendOkJsonResponse($this->service->resourceToData($this->resourceClass, $model));
+    }
+
+    public function destroy($id)
+    {
+        $this->service->destroy($id);
+
+        $courseRooms = $this->courseRoomService->findAllWhere(['course_uuid' => $id]);
+
+        // Delete course room old
+        foreach ($courseRooms as $courseRoom) {
+            $this->courseRoomService->destroy($courseRoom->uuid);
+        }
+
+        return $this->sendOkJsonResponse();
     }
 }
