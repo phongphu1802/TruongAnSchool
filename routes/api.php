@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\StudentHistoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::group(['as' => 'user.'], function () {
     Route::post('register', [AuthController::class, 'register']);
     Route::post('refresh', [AuthController::class, 'refresh']);
 });
+
 Route::group(['middleware' => 'auth:api'], function () {
     //Role
     Route::group(['as' => 'role.'], function () {
@@ -94,4 +96,16 @@ Route::group(['middleware' => 'auth:api'], function () {
             Route::delete('user/{id}', [UserController::class, 'destroy']);
         });
     });
+});
+
+//Config
+Route::group(['as' => 'config.'], function () {
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::group(['middleware' => 'role:' . RoleEnum::ADMIN->value], function () {
+            Route::post('config', [ConfigController::class, 'store']);
+            Route::put('config/{id}', [ConfigController::class, 'edit']);
+            Route::delete('config/{id}', [ConfigController::class, 'destroy']);
+        });
+    });
+    Route::get('configs', [ConfigController::class, 'index']);
 });
