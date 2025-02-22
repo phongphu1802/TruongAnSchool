@@ -102,7 +102,6 @@ Route::group(['middleware' => 'auth:api'], function () {
 Route::group(['as' => 'config.'], function () {
     Route::group(['middleware' => 'auth:api'], function () {
         Route::group(['middleware' => 'role:' . RoleEnum::ADMIN->value], function () {
-
             Route::post('config', [ConfigController::class, 'store']);
             Route::put('config/{id}', [ConfigController::class, 'edit']);
             Route::delete('config/{id}', [ConfigController::class, 'destroy']);
