@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\DayEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -30,6 +31,17 @@ class CourseUpdateRequest extends FormRequest
             'room.*.room_uuid' => [Rule::exists('rooms', 'uuid')],
             'room.*.start_time' => ['date_format:H:i'],
             'room.*.end_time' => ['date_format:H:i', 'after:start_time'],
+            'room.*.day' => [
+                Rule::in(
+                    DayEnum::MONDAY->value,
+                    DayEnum::TUESDAY->value,
+                    DayEnum::WEDNESDAY->value,
+                    DayEnum::THURSDAY->value,
+                    DayEnum::FRIDAY->value,
+                    DayEnum::SATURDAY->value,
+                    DayEnum::SUNDAY->value
+                )
+            ]
         ];
     }
 }

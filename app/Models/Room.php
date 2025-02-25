@@ -21,4 +21,9 @@ class Room extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function roomCourse()
+    {
+        return $this->hasMany(CourseRoom::class, 'room_uuid', 'uuid');
+    }
 }
