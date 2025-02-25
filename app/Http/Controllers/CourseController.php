@@ -41,6 +41,7 @@ class CourseController extends AbstractRestAPIController
                 'room_uuid' => $item['room_uuid'],
                 'start_time' => $item['start_time'],
                 'end_time' => $item['end_time'],
+                'day' => $item['day'],
             ]);
         }
 
@@ -68,6 +69,7 @@ class CourseController extends AbstractRestAPIController
                     'room_uuid' => $item['room_uuid'],
                     'start_time' => $item['start_time'],
                     'end_time' => $item['end_time'],
+                    'day' => $item['day'],
                 ]);
             }
         }

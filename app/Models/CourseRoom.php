@@ -23,6 +23,7 @@ class CourseRoom extends Model
         'room_uuid',
         'start_time',
         'end_time',
+        'day',
     ];
 
     public function room()
